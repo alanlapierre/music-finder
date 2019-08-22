@@ -18,30 +18,28 @@
         small {{ track.duration_ms | ms-to-mm }}
         nav.level
           .level-left
-            button.button.is-primary
+            button.level-item.button.is-primary
               span.icon.is-small(@click="selectTrack") ▶️
-            button.button.is-warning
-              span.icon.is-small(@click="goToTrack(track.id)") 🌎  
+            button.level-item.button.is-warning
+              span.icon.is-small(@click="goToTrack(track.id)") 🌎
 </template>
 
 <script>
+import trackMixin from '@/mixins/track'
+
 export default {
+  mixins: [trackMixin],
+
   props: {
     track: { type: Object, required: true }
   },
+
   methods: {
-    selectTrack () {
-      if (!this.track.preview_url) { return }
-      this.$emit('select', this.track.id)
-      this.$bus.$emit('set-track', this.track)
-    },
     goToTrack (id) {
       if (!this.track.preview_url) { return }
+
       this.$router.push({ name: 'track', params: { id } })
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-</style>
