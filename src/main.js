@@ -7,6 +7,7 @@ import blur from '@/directives/blur'
 
 import routes from '@/routes'
 import EventBus from '@/plugins/event-bus'
+import i18n from '@/i18n'
 
 Vue.use(VueRouter)
 Vue.use(EventBus)
@@ -18,5 +19,6 @@ const router = new VueRouter({ routes, mode: 'history' })
 new Vue({
   el: '#app',
   render: h => h(App),
-  router
+  router,
+  i18n
 })

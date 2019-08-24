@@ -7,8 +7,10 @@
             .nav-item
               strong Music Finder
             .nav-right.nav-menu
-              router-link.nav-item(:to="{ name: 'search' }") Buscar
-              router-link.nav-item(to="about") Nosotros
+              a.nav-item(@click="selectLang('en')") En
+              a.nav-item(@click="selectLang('es')") Es
+              router-link.nav-item(:to="{ name: 'search' }") {{ $t('search') }}
+              router-link.nav-item(to="about") {{ $t('about') }}
     .hero-body
       .container.has-text-centered
         h1.title Platzi Music
@@ -20,6 +22,11 @@
 import AppPlayer from '@/components/Player.vue'
 
 export default {
-  components: { AppPlayer }
+  components: { AppPlayer },
+  methods: {
+    selectLang (lang) {
+      this.$i18n.locale = lang
+    }
+  }
 }
 </script>
