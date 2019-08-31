@@ -6,16 +6,21 @@
     transition(name="move")
       pm-loader(v-show="isLoading")
     section.section(v-show="!isLoading")
-      nav.nav
-        .container
-          input.input.is-large(
-            type="text",
-            placeholder="Buscar canciones",
-            v-model="searchQuery",
-            @keyup.enter="search"
-          )
-          a.button.is-info.is-large(@click="search") Buscar
-          a.button.is-danger.is-large &times;
+      .container
+        .field.has-addons
+          .control.has-icons-left.is-expanded
+            input.input.is-large(
+              type="text",
+              placeholder="Buscar canciones",
+              v-model="searchQuery",
+              @keyup.enter="search"
+            )
+            span.icon.is-left
+              i.fas.fa-search
+          .control
+            a.button.is-info.is-large(@click="search") Buscar
+          .control
+            a.button.is-danger.is-large &times;
       .container
         p
           small {{ searchMessage }}
