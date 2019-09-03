@@ -20,7 +20,7 @@
           .control
             a.button.is-info.is-large(@click="search") Buscar
           .control
-            a.button.is-danger.is-large &times;
+            a.button.is-danger.is-large(@click="remove") &times;
       .container
         p
           small(v-show="this.tracks && this.tracks.length > 0") {{ searchMessage }}
@@ -78,6 +78,10 @@ export default {
   },
 
   methods: {
+    remove () {
+      this.tracks = []
+      this.searchQuery = null
+    },
     search () {
       if (!this.searchQuery) { return }
 
