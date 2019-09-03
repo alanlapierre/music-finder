@@ -45,3 +45,9 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+section {
+  height: 25vh !important;
+}
+
+</style>

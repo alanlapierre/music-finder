@@ -1,7 +1,8 @@
 <template lang="pug">
   #app
     pm-header
-    router-view
+    #container  
+      router-view
     pm-footer
 </template>
 

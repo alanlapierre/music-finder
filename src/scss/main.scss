@@ -1,5 +1,13 @@
 @import '../../node_modules/bulma/bulma.sass';
 
+html, body,  #app {
+    height: 100vh;
+}
+
+#container {
+    min-height: 60vh;
+}
+
 .move-enter-active, .move-leave-active {
     transform: translateX(0);
     transition: all .3s linear;
