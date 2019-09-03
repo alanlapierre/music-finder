@@ -1,11 +1,41 @@
 <template lang="pug">
-    .container
-        .content.has-text-centered
-            h1 Cargando ...
+    .container.has-text-centered
+        .loader
 </template>
 <style lang="scss" scoped>
-.content {
-    padding: 20px;
-    min-height: 40vh;
+.loader {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid rgb(32, 156, 238);
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
+  animation: spin 2s linear infinite;
+  display: inline-block;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
