@@ -1,10 +1,10 @@
 <template lang="pug">
   main
     transition(name="move")
-      pm-notification(v-show="showNotification")
+      app-notification(v-show="showNotification")
         p(slot="body") No se encontraron resultados
     transition(name="move")
-      pm-loader(v-show="isLoading")
+      app-loader(v-show="isLoading")
     section.section(v-show="!isLoading")
       .container
         .field.has-addons
@@ -28,7 +28,7 @@
       .container.results
         .columns.is-multiline
           .column.is-one-quarter(v-for="t in tracks")
-            pm-track(
+            app-track(
               v-blur="t.preview_url"
               :class="{ 'is-active': t.id === selectedTrack }",
               :track="t",
@@ -39,15 +39,15 @@
 <script>
 import trackService from '@/services/track'
 
-import PmTrack from '@/components/Track.vue'
+import AppTrack from '@/components/Track.vue'
 
-import PmLoader from '@/components/shared/Loader.vue'
-import PmNotification from '@/components/shared/Notification.vue'
+import AppLoader from '@/components/shared/Loader.vue'
+import AppNotification from '@/components/shared/Notification.vue'
 
 export default {
   name: 'app',
 
-  components: { PmTrack, PmLoader, PmNotification },
+  components: { AppTrack, AppLoader, AppNotification },
 
   data () {
     return {
