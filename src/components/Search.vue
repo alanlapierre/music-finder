@@ -23,7 +23,7 @@
             a.button.is-danger.is-large &times;
       .container
         p
-          small {{ searchMessage }}
+          small(v-show="this.tracks && this.tracks.length > 0") {{ searchMessage }}
 
       .container.results
         .columns.is-multiline
