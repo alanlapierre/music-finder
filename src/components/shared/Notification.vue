@@ -1,12 +1,43 @@
 <template lang="pug">
-.container
+.container(v-if="showNotification") 
     .columns
-        .column.is-5.is-offset-4
-            .notification.is-danger
-                slot(name="body") Algo unduvo mal
+        .column.is-8.is-offset-2
+            .notification(:class="isError? 'is-danger' : 'is-link'")
+                slot(name="body")
+                button.delete(aria-label="delete", @click="close") 
 </template>
+<script>
+export default {
+  props: {
+    isError: { type: Boolean, required: true },
+    show: { type: Boolean, required: true }
+  },
+  data () {
+    return {
+      showNotification: false
+    }
+  },
+  methods: {
+    close () {
+      this.show = false
+    }
+  },
+  watch: {
+    show: function (val) {
+      this.showNotification = val
+      if (val) {
+        setTimeout(() => {
+          this.showNotification = false
+        }, 5000)
+      }
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .notification {
     margin: 10px;
+    border-radius: 10px;
 }
 </style>

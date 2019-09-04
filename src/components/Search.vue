@@ -1,10 +1,10 @@
 <template lang="pug">
   main
-    transition(name="move")
-      app-notification(v-show="showNotification")
-        p(slot="body") No se encontraron resultados
-    transition(name="move")
-      app-loader(v-show="isLoading")
+    // transition(name="move")
+    app-notification(:show="showNotification", :isError="isError")
+      p(slot="body") {{ notificationText }}
+    // transition(name="move")
+    app-loader(v-show="isLoading")
     section.section(v-show="!isLoading")
       .container
         .field.has-addons
@@ -38,9 +38,7 @@
 
 <script>
 import trackService from '@/services/track'
-
 import AppTrack from '@/components/Track.vue'
-
 import AppLoader from '@/components/shared/Loader.vue'
 import AppNotification from '@/components/shared/Notification.vue'
 
@@ -56,7 +54,9 @@ export default {
 
       isLoading: false,
       showNotification: false,
+      isError: false,
 
+      notificationText: '',
       selectedTrack: ''
     }
   },
@@ -66,32 +66,31 @@ export default {
       return `Encontrados: ${this.tracks.length}`
     }
   },
-
-  watch: {
-    showNotification () {
-      if (this.showNotification) {
-        setTimeout(() => {
-          this.showNotification = false
-        }, 3000)
-      }
-    }
-  },
-
   methods: {
     remove () {
       this.tracks = []
       this.searchQuery = null
+      this.showNotification = false
+      this.isLoading = false
     },
     search () {
       if (!this.searchQuery) { return }
 
+      this.showNotification = false
       this.isLoading = true
 
       trackService.search(this.searchQuery)
         .then(res => {
-          this.showNotification = res.tracks.total === 0
-          this.tracks = res.tracks.items
           this.isLoading = false
+          this.showNotification = true
+          if (res.tracks.total === 0) {
+            this.notificationText = 'No se encontraron resultados'
+            this.isError = true
+          } else {
+            this.notificationText = 'Se encontraron resultados'
+            this.isError = false
+          }
+          this.tracks = res.tracks.items
         })
     },
 
