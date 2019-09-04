@@ -2,5 +2,5 @@
     footer.footer
         .container
             .content.has-text-centered
-                Created Created By @alanlapierre
+                Created By @alanlapierre
 </template>
