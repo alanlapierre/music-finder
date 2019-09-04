@@ -19,7 +19,7 @@
                 .content
                   ul(v-for="(v, k) in track")
                     li
-                      strong {{ k }}:&nbsp;
+                      strong {{ k | uppercase }}:&nbsp;
                       span {{ v }}
 
               nav.nav-level
