@@ -1,6 +1,6 @@
 <template lang="pug">
   main
-    section.section(v-show="!isLoading")
+    section.section(v-show="!showLoader")
       .container
         .field.has-addons
           .control.has-icons-left.is-expanded
@@ -42,6 +42,7 @@ export default {
 
   data () {
     return {
+      showLoader: false,
       searchQuery: '',
       tracks: [],
       selectedTrack: ''
@@ -58,17 +59,20 @@ export default {
       this.tracks = []
       this.searchQuery = null
       this.$store.commit('setShowNotification', {showNotification: false})
-      this.$store.commit('setShowLoader', {show: false})
+      this.showLoader = false
+      this.$store.commit('setShowLoader', { showLoader: this.showLoader })
     },
     search () {
       if (!this.searchQuery) { return }
 
       this.$store.commit('setShowNotification', {showNotification: false})
-      this.$store.commit('setShowLoader', {show: true})
+      this.showLoader = true
+      this.$store.commit('setShowLoader', {showLoader: this.showLoader})
 
       trackService.search(this.searchQuery)
         .then(res => {
-          this.$store.commit('setShowLoader', {show: false})
+          this.showLoader = false
+          this.$store.commit('setShowLoader', {showLoader: this.showLoader})
 
           let showNotification = true
           let notificationIsError = false

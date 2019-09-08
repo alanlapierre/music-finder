@@ -34,7 +34,7 @@ const store = new Vuex.Store({
     },
     setShowLoader (state, payload) {
       if (payload) {
-        state.showLoader = payload.show
+        state.showLoader = payload.showLoader
       }
     }
   },
