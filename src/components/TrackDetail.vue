@@ -44,8 +44,22 @@ export default {
     const id = this.$route.params.id
 
     if (!this.track || !this.track.id || this.track.id !== id) {
+      this.$store.commit('setShowLoader', {show: true})
+
       this.getTrackById({ id })
-        .then(() => console.log('Track loaded...'))
+        .then(() => {
+          this.$store.commit('setShowLoader', {show: false})
+          this.$store.commit('setShowNotification', {showNotification: true,
+            notificationIsError: false,
+            notificationText: 'Canción encontrada'})
+        })
+        .catch(() => {
+          this.$store.commit('setShowLoader', {show: false})
+          this.$store.commit('setShowNotification', {showNotification: true,
+            notificationIsError: true,
+            notificationText: 'Canción no encontrada'})
+          setTimeout(() => this.$router.push({ name: 'search' }), 3000)
+        })
     }
   }
 }

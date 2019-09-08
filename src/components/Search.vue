@@ -1,10 +1,5 @@
 <template lang="pug">
   main
-    // transition(name="move")
-    app-notification(:show="showNotification", :isError="isError")
-      p(slot="body") {{ notificationText }}
-    // transition(name="move")
-    app-loader(v-show="isLoading")
     section.section(v-show="!isLoading")
       .container
         .field.has-addons
@@ -39,24 +34,16 @@
 <script>
 import trackService from '@/services/track'
 import AppTrack from '@/components/Track.vue'
-import AppLoader from '@/components/shared/Loader.vue'
-import AppNotification from '@/components/shared/Notification.vue'
 
 export default {
   name: 'app',
 
-  components: { AppTrack, AppLoader, AppNotification },
+  components: { AppTrack },
 
   data () {
     return {
       searchQuery: '',
       tracks: [],
-
-      isLoading: false,
-      showNotification: false,
-      isError: false,
-
-      notificationText: '',
       selectedTrack: ''
     }
   },
@@ -70,26 +57,28 @@ export default {
     remove () {
       this.tracks = []
       this.searchQuery = null
-      this.showNotification = false
-      this.isLoading = false
+      this.$store.commit('setShowNotification', {showNotification: false})
+      this.$store.commit('setShowLoader', {show: false})
     },
     search () {
       if (!this.searchQuery) { return }
 
-      this.showNotification = false
-      this.isLoading = true
+      this.$store.commit('setShowNotification', {showNotification: false})
+      this.$store.commit('setShowLoader', {show: true})
 
       trackService.search(this.searchQuery)
         .then(res => {
-          this.isLoading = false
-          this.showNotification = true
+          this.$store.commit('setShowLoader', {show: false})
+
+          let showNotification = true
+          let notificationIsError = false
+          let notificationText = 'Se encontraron resultados'
+
           if (res.tracks.total === 0) {
-            this.notificationText = 'No se encontraron resultados'
-            this.isError = true
-          } else {
-            this.notificationText = 'Se encontraron resultados'
-            this.isError = false
+            notificationText = 'No se encontraron resultados'
+            notificationIsError = true
           }
+          this.$store.commit('setShowNotification', {showNotification, notificationIsError, notificationText})
           this.tracks = res.tracks.items
         })
     },

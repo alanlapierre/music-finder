@@ -7,7 +7,11 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    track: {}
+    track: {},
+    showNotification: false,
+    notificationIsError: false,
+    notificationText: '',
+    showLoader: false
   },
 
   getters: {
@@ -20,6 +24,18 @@ const store = new Vuex.Store({
   mutations: {
     setTrack (state, track) {
       state.track = track
+    },
+    setShowNotification (state, payload) {
+      if (payload) {
+        state.showNotification = payload.showNotification
+        state.notificationIsError = payload.notificationIsError
+        state.notificationText = payload.notificationText
+      }
+    },
+    setShowLoader (state, payload) {
+      if (payload) {
+        state.showLoader = payload.show
+      }
     }
   },
 

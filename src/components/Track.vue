@@ -37,7 +37,7 @@ export default {
   methods: {
     goToTrack (id) {
       if (!this.track.preview_url) { return }
-
+      this.$store.commit('setShowNotification', {showNotification: false})
       this.$router.push({ name: 'track', params: { id } })
     }
   }

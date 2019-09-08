@@ -28,7 +28,7 @@ export default {
       if (val) {
         setTimeout(() => {
           this.showNotification = false
-        }, 5000)
+        }, 3000)
       }
     }
   }

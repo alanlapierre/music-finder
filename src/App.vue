@@ -1,18 +1,27 @@
 <template lang="pug">
   #app
-    pm-header
+    app-header
     #container  
+      app-notification(:show="showNotification", :isError="notificationIsError")
+        p(slot="body") {{ notificationText }}
+      app-loader(v-show="showLoader")
       router-view
-    pm-footer
+    app-footer
 </template>
 
 <script>
-import PmFooter from '@/components/layout/Footer.vue'
-import PmHeader from '@/components/layout/Header.vue'
+import AppFooter from '@/components/layout/Footer.vue'
+import AppHeader from '@/components/layout/Header.vue'
+import AppLoader from '@/components/shared/Loader.vue'
+import AppNotification from '@/components/shared/Notification.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'app',
-  components: { PmFooter, PmHeader }
+  components: { AppFooter, AppHeader, AppLoader, AppNotification },
+  computed: {
+    ...mapState(['showNotification', 'notificationIsError', 'notificationText', 'showLoader'])
+  }
 }
 </script>
 
