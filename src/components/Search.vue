@@ -25,31 +25,29 @@
           .column.is-one-quarter(v-for="t in tracks")
             app-track(
               v-blur="t.preview_url"
-              :class="{ 'is-active': t.id === selectedTrack }",
-              :track="t",
-              @select="setSelectedTrack"
+              :class="{ 'is-active': t.id === track.id }",
+              :track="t"
             )
 </template>
 
 <script>
 import trackService from '@/services/track'
 import AppTrack from '@/components/Track.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'app',
-
   components: { AppTrack },
 
   data () {
     return {
       showLoader: false,
       searchQuery: '',
-      tracks: [],
-      selectedTrack: ''
+      tracks: []
     }
   },
-
   computed: {
+    ...mapState(['track']),
     searchMessage () {
       return `Encontrados: ${this.tracks.length}`
     }
@@ -85,10 +83,6 @@ export default {
           this.$store.commit('setShowNotification', {showNotification, notificationIsError, notificationText})
           this.tracks = res.tracks.items
         })
-    },
-
-    setSelectedTrack (id) {
-      this.selectedTrack = id
     }
   }
 }

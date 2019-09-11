@@ -3,7 +3,7 @@
     p.is-128x128
       img(:src="track.album.images[0].url")
     p
-      strong {{ track.name }}
+      strong {{ track.name }} &nbsp;
       small [{{ track.duration_ms | ms-to-mm }}]
     p
       audio(controls, :src="track.preview_url")
