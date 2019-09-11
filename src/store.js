@@ -8,6 +8,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     track: {},
+    trackList: [],
+    searchQuery: '',
     showNotification: false,
     notificationIsError: false,
     notificationText: '',
@@ -24,6 +26,12 @@ const store = new Vuex.Store({
   mutations: {
     setTrack (state, track) {
       state.track = track
+    },
+    setTrackList (state, trackList) {
+      state.trackList = trackList
+    },
+    setSearchQuery (state, searchQuery) {
+      state.searchQuery = searchQuery
     },
     setShowNotification (state, payload) {
       if (payload) {

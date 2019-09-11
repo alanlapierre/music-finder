@@ -18,11 +18,11 @@
             a.button.is-danger.is-large(@click="remove") &times;
       .container
         p
-          small(v-show="this.tracks && this.tracks.length > 0") {{ searchMessage }}
+          small(v-show="this.trackList && this.trackList.length > 0") {{ searchMessage }}
 
       .container.results
         .columns.is-multiline
-          .column.is-one-quarter(v-for="t in tracks")
+          .column.is-one-quarter(v-for="t in trackList")
             app-track(
               v-blur="t.preview_url"
               :class="{ 'is-active': t.id === track.id }",
@@ -41,21 +41,27 @@ export default {
 
   data () {
     return {
-      showLoader: false,
-      searchQuery: '',
-      tracks: []
+      showLoader: false
     }
   },
   computed: {
-    ...mapState(['track']),
+    ...mapState(['track', 'trackList', 'searchQuery']),
+    searchQuery: {
+      get () {
+        return this.$store.state.searchQuery
+      },
+      set (value) {
+        this.$store.commit('setSearchQuery', value)
+      }
+    },
     searchMessage () {
-      return `Encontrados: ${this.tracks.length}`
+      return `Encontrados: ${this.trackList.length}`
     }
   },
   methods: {
     remove () {
-      this.tracks = []
-      this.searchQuery = null
+      this.$store.commit('setTrackList', [])
+      this.$store.commit('setSearchQuery', '')
       this.$store.commit('setShowNotification', {showNotification: false})
       this.showLoader = false
       this.$store.commit('setShowLoader', { showLoader: this.showLoader })
@@ -81,7 +87,7 @@ export default {
             notificationIsError = true
           }
           this.$store.commit('setShowNotification', {showNotification, notificationIsError, notificationText})
-          this.tracks = res.tracks.items
+          this.$store.commit('setTrackList', res.tracks.items)
         })
     }
   }

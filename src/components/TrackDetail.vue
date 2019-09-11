@@ -12,7 +12,7 @@
                   i.fas.fa-play
             .control
               a.button.is-warning.is-large
-                span.icon
+                span.icon(@click="goBack")
                   i.fas.fa-chevron-left  
       .column.is-8
         .panel
@@ -43,7 +43,10 @@ export default {
     ...mapGetters(['trackTitle'])
   },
   methods: {
-    ...mapActions(['getTrackById'])
+    ...mapActions(['getTrackById']),
+    goBack () {
+      this.$router.push({ name: 'search' })
+    }
   },
   created () {
     const id = this.$route.params.id
