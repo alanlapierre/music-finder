@@ -19,9 +19,11 @@
         nav.level
           .level-left
             button.level-item.button.is-primary
-              span.icon.is-small(@click="selectTrack") ▶️
+              span.icon.is-small(@click="selectTrack")
+                i.fas.fa-play
             button.level-item.button.is-warning
-              span.icon.is-small(@click="goToTrack(track.id)") 🌎
+              span.icon.is-small(@click="goToTrack(track.id)")
+                i.fas.fa-info-circle
 </template>
 
 <script>

@@ -5,10 +5,15 @@
         figure.media-left
           p.image
             img(:src="track.album.images[0].url")
-          p.button-bar
-            a.button.is-primary.is-large
-              span.icon(@click="selectTrack")  ▶️
-
+          .field.is-grouped.button-bar
+            .control
+              a.button.is-primary.is-large
+                span.icon(@click="selectTrack")
+                  i.fas.fa-play
+            .control
+              a.button.is-warning.is-large
+                span.icon
+                  i.fas.fa-chevron-left  
       .column.is-8
         .panel
           .panel-heading
