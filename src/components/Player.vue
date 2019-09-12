@@ -4,7 +4,7 @@
     .modal-content
       .card.has-text-centered
         header.card-header
-          p.card-header-title Reproductor
+          p.card-header-title {{ $t('player_title') }}
         section.card-content
           p.is-128x128
             img(:src="track.album.images[0].url")

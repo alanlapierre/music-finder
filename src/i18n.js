@@ -5,12 +5,28 @@ Vue.use(VueI18n)
 
 const messages = {
   en: {
-    search: 'Search',
-    about: 'About'
+    header_menu_search: 'Search',
+    header_menu_about: 'About',
+    header_subtitle: 'Advanced Song Finder',
+    header_lang_english: 'English',
+    header_lang_spanish: 'Spanish',
+    footer_created: 'Created By',
+    about_title: 'About Us',
+    player_title: 'Player',
+    search_search_btn: 'Search',
+    search_search_input: 'Search songs'
   },
   es: {
-    search: 'Busqueda',
-    about: 'Nosotros'
+    header_menu_search: 'Búsqueda',
+    header_menu_about: 'Nosotros',
+    header_subtitle: 'Buscador de Canciones Avanzado',
+    header_lang_english: 'Inglés',
+    header_lang_spanish: 'Español',
+    footer_created: 'Creado por',
+    about_title: 'Acerca de Nosotros',
+    player_title: 'Reproductor',
+    search_search_btn: 'Buscar',
+    search_search_input: 'Buscar canciones'
   }
 }
 

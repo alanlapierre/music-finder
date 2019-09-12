@@ -6,14 +6,14 @@
           .control.has-icons-left.is-expanded
             input.input.is-large(
               type="text",
-              placeholder="Buscar canciones",
+              :placeholder="$t('search_search_input')",
               v-model="searchQuery",
               @keyup.enter="search"
             )
             span.icon.is-left
               i.fas.fa-search
           .control
-            a.button.is-info.is-large(@click="search") Buscar
+            a.button.is-info.is-large(@click="search") {{ $t('search_search_btn') }}
           .control
             a.button.is-danger.is-large(@click="remove") &times;
       .container

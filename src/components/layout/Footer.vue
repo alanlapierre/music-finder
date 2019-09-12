@@ -2,5 +2,5 @@
     footer.footer
         .container
             .content.has-text-centered
-                span Created By @alanlapierre
+                span {{ $t('footer_created') }} @alanlapierre
 </template>
