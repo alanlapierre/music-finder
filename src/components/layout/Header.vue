@@ -25,14 +25,10 @@
       .container.has-text-centered
         h1.title.is-bold MusicFinder
         h2.subtitle Buscador de Canciones Avanzado
-        app-player
 </template>
 
 <script>
-import AppPlayer from '@/components/Player.vue'
-
 export default {
-  components: { AppPlayer },
   data () {
     return {
       lang: 'en'

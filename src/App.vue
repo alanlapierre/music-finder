@@ -1,5 +1,6 @@
 <template lang="pug">
   #app
+    app-player
     app-header
     #container  
       app-notification(:show="showNotification", :isError="notificationIsError")
@@ -13,12 +14,13 @@
 import AppFooter from '@/components/layout/Footer.vue'
 import AppHeader from '@/components/layout/Header.vue'
 import AppLoader from '@/components/shared/Loader.vue'
+import AppPlayer from '@/components/Player.vue'
 import AppNotification from '@/components/shared/Notification.vue'
 import { mapState } from 'vuex'
 
 export default {
   name: 'app',
-  components: { AppFooter, AppHeader, AppLoader, AppNotification },
+  components: { AppFooter, AppHeader, AppLoader, AppNotification, AppPlayer },
   computed: {
     ...mapState(['showNotification', 'notificationIsError', 'notificationText', 'showLoader'])
   }

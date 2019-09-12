@@ -25,7 +25,7 @@
           .column.is-one-quarter(v-for="t in trackList")
             app-track(
               v-blur="t.preview_url"
-              :class="{ 'is-active': t.id === track.id }",
+              :class="{ 'selected-track': t.id === track.id }",
               :track="t"
             )
 </template>
@@ -34,51 +34,31 @@
 import trackService from '@/services/track'
 import AppTrack from '@/components/Track.vue'
 import { mapState } from 'vuex'
+import utilMixin from '@/mixins/util'
+import trackMixin from '@/mixins/track'
 
 export default {
   name: 'app',
   components: { AppTrack },
-
-  data () {
-    return {
-      showLoader: false
-    }
-  },
+  mixins: [utilMixin, trackMixin],
   computed: {
-    ...mapState(['track', 'trackList', 'searchQuery']),
-    searchQuery: {
-      get () {
-        return this.$store.state.searchQuery
-      },
-      set (value) {
-        this.$store.commit('setSearchQuery', value)
-      }
-    },
+    ...mapState(['track', 'trackList']),
     searchMessage () {
       return `Encontrados: ${this.trackList.length}`
     }
   },
   methods: {
     remove () {
-      this.$store.commit('setTrackList', [])
-      this.$store.commit('setSearchQuery', '')
-      this.$store.commit('setShowNotification', {showNotification: false})
-      this.showLoader = false
-      this.$store.commit('setShowLoader', { showLoader: this.showLoader })
+      this.cleanTrackListDetail()
+      this.hideNotificationAction()
+      this.hideLoaderAction()
     },
     search () {
       if (!this.searchQuery) { return }
-
-      this.$store.commit('setShowNotification', {showNotification: false})
-      this.showLoader = true
-      this.$store.commit('setShowLoader', {showLoader: this.showLoader})
+      this.showLoaderAction()
 
       trackService.search(this.searchQuery)
         .then(res => {
-          this.showLoader = false
-          this.$store.commit('setShowLoader', {showLoader: this.showLoader})
-
-          let showNotification = true
           let notificationIsError = false
           let notificationText = 'Se encontraron resultados'
 
@@ -86,8 +66,9 @@ export default {
             notificationText = 'No se encontraron resultados'
             notificationIsError = true
           }
-          this.$store.commit('setShowNotification', {showNotification, notificationIsError, notificationText})
-          this.$store.commit('setTrackList', res.tracks.items)
+          this.showNotificationAction(notificationIsError, notificationText)
+          // Seteamos la lista de temas.
+          this.setTrackListDetail(res.tracks.items, null)
         })
     }
   }
@@ -99,7 +80,7 @@ export default {
     margin-top: 50px;
   }
   
-  .is-active {
+  .selected-track {
     border: 3px #23d160 solid;
   }
 </style>

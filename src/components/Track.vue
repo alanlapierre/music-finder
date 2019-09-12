@@ -19,7 +19,7 @@
         nav.level
           .level-left
             button.level-item.button.is-primary
-              span.icon.is-small(@click="selectTrack")
+              span.icon.is-small(@click="selectTrackToListen")
                 i.fas.fa-play
             button.level-item.button.is-warning
               span.icon.is-small(@click="goToTrack(track.id)")
@@ -28,9 +28,10 @@
 
 <script>
 import trackMixin from '@/mixins/track'
+import utilMixin from '@/mixins/util'
 
 export default {
-  mixins: [trackMixin],
+  mixins: [trackMixin, utilMixin],
 
   props: {
     track: { type: Object, required: true }
@@ -39,8 +40,8 @@ export default {
   methods: {
     goToTrack (id) {
       if (!this.track.preview_url) { return }
-      this.$store.commit('setShowNotification', {showNotification: false})
-      this.selectTrack()
+      this.hideNotificationAction()
+      this.selectTrackForDetailPage()
       this.$router.push({ name: 'track', params: { id } })
     }
   }

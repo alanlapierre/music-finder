@@ -13,7 +13,8 @@ const store = new Vuex.Store({
     showNotification: false,
     notificationIsError: false,
     notificationText: '',
-    showLoader: false
+    showLoader: false,
+    showPlayer: false
   },
 
   getters: {
@@ -40,10 +41,11 @@ const store = new Vuex.Store({
         state.notificationText = payload.notificationText
       }
     },
-    setShowLoader (state, payload) {
-      if (payload) {
-        state.showLoader = payload.showLoader
-      }
+    setShowLoader (state, showLoader) {
+      state.showLoader = showLoader
+    },
+    setShowPlayer (state, showPlayer) {
+      state.showPlayer = showPlayer
     }
   },
 
