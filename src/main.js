@@ -19,7 +19,7 @@ Vue.use(msToMm)
 Vue.use(uppercase)
 Vue.use(blur)
 
-const router = new VueRouter({ routes, mode: 'history' })
+const router = new VueRouter({ routes, base: '/music-finder', mode: 'history' })
 
 new Vue({
   el: '#app',
