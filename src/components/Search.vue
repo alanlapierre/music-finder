@@ -17,16 +17,23 @@
           .control
             a.button.is-danger.is-large(@click="remove") &times;
       .container
-        p
-          small(v-show="this.trackList && this.trackList.length > 0") {{ searchMessage }}
-
+        .columns
+            .column
+              .flexcontainer
+                p
+                  small(v-show="trackList && trackList.length > 0") {{ searchMessage }}
+                .listmode-selector
+                  label.checkbox
+                    input(type="checkbox" v-model="listMode") 
+                  span &nbsp; Modo lista
       .container.results
         .columns.is-multiline
-          .column.is-one-quarter(v-for="t in trackList")
+          .column(:class="[listMode ? 'is-full' : 'is-one-quarter']", v-for="t in trackList")
             app-track(
               v-blur="t.preview_url"
               :class="{ 'selected-track': t.id === track.id }",
-              :track="t"
+              :track="t",
+              :display="listMode ? 'list' : 'card'"
             )
 </template>
 
@@ -41,6 +48,11 @@ export default {
   name: 'app',
   components: { AppTrack },
   mixins: [utilMixin, trackMixin],
+  data () {
+    return {
+      listMode: false
+    }
+  },
   computed: {
     ...mapState(['track', 'trackList']),
     searchMessage () {
@@ -83,4 +95,20 @@ export default {
   .selected-track {
     border: 3px #23d160 solid;
   }
+
+  .flexcontainer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .listmode-selector {
+    font-size: 20px;
+  }
+  
+  .listmode-selector input {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+  } 
 </style>
