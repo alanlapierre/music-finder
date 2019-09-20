@@ -4,7 +4,7 @@ El ejemplo es una app desarrollada en **Vue JS 2.X**. El objetivo fue crear una 
 
 ### Dentro de las herramientas que se usaron para el desarrollo se encuentran las siguientes:
 
-* **Bulma CSS** : Se utiliza tanto por el **sistema de grillas basado en Flex-box**, como para hacer uso de los distintos componentes que este framework nos entrega. Puede consultarse más [aquí](https://bulma.io).
+* **Bulma CSS** : Se utiliza tanto por el **sistema de grillas basado en Flex-box**, como para disponer de los distintos componentes que este framework nos entrega. Puede consultarse más [aquí](https://bulma.io).
 * **API Spotify** : Se utiliza para conseguir el listado de canciones a mostrar. Pueden verse más detalles sobre el **API para desarrolladores** [aquí](https://developer.spotify.com/).
 * **PUG**: Se utiliza para simplificar la escritura del HTML. Puede verse más información sobre esto [aquí](https://pugjs.org/api/getting-started.html).
 * **Vuex**: Se utiliza para gestionar el estado de toda la app a nivel global, permitiendo interacciones entre componentes que no necesariamente tienen relación padre-hijo. Puede verse más información [aquí](https://vuex.vuejs.org).
