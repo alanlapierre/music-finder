@@ -11,7 +11,6 @@
           .navbar-menu
             .navbar-start
               router-link.navbar-item(:to="{ name: 'search' }") {{ $t('header_menu_search') }}
-              router-link.navbar-item(to="about") {{ $t('header_menu_about') }}
             .navbar-end
               .field.navbar-item
                 .control.has-icons-left
