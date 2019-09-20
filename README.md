@@ -27,30 +27,30 @@ El ejemplo es una app desarrollada en **Vue JS 2.X**. El objetivo fue crear una 
 
 Aqui podemos hacer nuestra búsqueda y listar las canciones tanto como tarjetas o en formato lista. 
 
-![MusicFinder homepage](https://github.com/alanlapierre/artist-finder/tree/master/src/assets/readme/readme1.png)
+![MusicFinder homepage](https://github.com/alanlapierre/music-finder/tree/master/src/assets/readme/readme1.png)
 
 
 Listado de formato Tarjetas.
 
-![MusicFinder homepage](https://github.com/alanlapierre/artist-finder/tree/master/src/assets/readme/readme2.png)
+![MusicFinder homepage](https://github.com/alanlapierre/music-finder/tree/master/src/assets/readme/readme2.png)
 
 Listado en formato de Lista.
 
-![MusicFinder homepage](https://github.com/alanlapierre/artist-finder/tree/master/src/assets/readme/readme2.1.png)
+![MusicFinder homepage](https://github.com/alanlapierre/music-finder/tree/master/src/assets/readme/readme2.1.png)
 
 
 #### Reproductor:
 
 El reproductor se muestra en forma de modal, por lo tanto, es necesario cerrarlo para volver al listado. También puede invocarse desde la página de detalle de la canción.  
 
-![MusicFinder player](https://github.com/alanlapierre/artist-finder/tree/master/src/assets/readme/readme3.png)
+![MusicFinder player](https://github.com/alanlapierre/music-finder/tree/master/src/assets/readme/readme3.png)
 
 
 #### Detalle:
 
 Puede reproducirse la canción o volver a la búsqueda previa. Conservando en este último caso el listado completo (gracias a Vuex).
 
-![MusicFinder detail](https://github.com/alanlapierre/artist-finder/tree/master/src/assets/readme/readme4.png)
+![MusicFinder detail](https://github.com/alanlapierre/music-finder/tree/master/src/assets/readme/readme4.png)
 
 
 Licencia MIT
